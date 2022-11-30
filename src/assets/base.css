@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: #f0f0f5;
+  color: #969cb2;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-cuco-pink text-white h-fit px-7 py-3 rounded hover:brightness-105 active:brightness-95;
+  }
+
+  .btn-secondary {
+    @apply bg-cuco-green text-white h-fit px-7 py-3 rounded hover:brightness-105 active:brightness-95;
+  }
+
+  .btn-transparent {
+    @apply bg-transparent text-cuco-text h-fit px-7 py-3 rounded hover:brightness-105 active:brightness-95;
+  }
+
+  .input-primary {
+    @apply w-full pl-3 pr-10 py-3 shadow-sm rounded focus:outline-none;
+  }
+}
