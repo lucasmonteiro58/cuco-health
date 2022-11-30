@@ -14,7 +14,7 @@ function goToForm() {
     class="w-full bg-cuco-blue h-[318px] pt-14 flex items-center flex-col"
   >
     <div
-      class="w-full md:w-[700px] xl:w-[1120px] px-5 md:px-0 flex justify-between"
+      class="w-full md:w-[700px] xl:w-[1120px] px-5 md:px-0 flex justify-between h-[48px]"
     >
       <img
         src="@/assets/images/logo.png"

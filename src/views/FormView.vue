@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+function backHome() {
+  router.push({ name: "home" });
+}
+</script>
 
 <template>
   <div class="grid gap-y-6 gap-x-5 md:grid-cols-2 grid-cols-1">
@@ -18,7 +26,7 @@
     />
   </div>
   <div class="mt-8 float-right">
-    <button class="btn-transparent">Cancelar</button>
+    <button @click="backHome" class="btn-transparent">Cancelar</button>
     <button class="btn-secondary ml-4">Salvar</button>
   </div>
 </template>
