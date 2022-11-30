@@ -29,6 +29,37 @@ body {
   }
 }
 
+/*Paginator */
+
+.VuePagination__pagination-item-prev-page,
+.VuePagination__pagination-item-next-page {
+  display: none;
+}
+
+.VuePagination__pagination {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+.VuePagination__pagination-item button {
+  @apply px-2 py-1 rounded;
+}
+
+.VuePagination__pagination-item .active {
+  @apply bg-cuco-blue text-white;
+}
+
+.VuePagination__count {
+  margin-top: -27px;
+}
+
+.VuePagination {
+  margin-bottom: 64px;
+}
+
 @media screen and (max-width: 600px) {
   table {
     border: 0;

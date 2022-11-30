@@ -1,5 +1,14 @@
 <script setup>
 import { ref } from "vue";
+import Pagination from "v-pagination-3";
+
+const page = ref(1);
+
+const paginatorOptions = {
+  texts: {
+    count: "{from} - {to} de {count}|{count} registros| 1",
+  },
+};
 const clients = ref([
   {
     name: "João da Silva",
@@ -15,6 +24,66 @@ const clients = ref([
   },
   {
     name: "José da Silva",
+    cpf: "123.456.789-00",
+    birthDate: "01/01/2000",
+    phone: "(11) 99999-9999",
+  },
+  {
+    name: "João da Silva",
+    cpf: "123.456.789-00",
+    birthDate: "01/01/2000",
+    phone: "(11) 99999-9999",
+  },
+  {
+    name: "Maria da Silva",
+    cpf: "123.456.789-00",
+    birthDate: "01/01/2000",
+    phone: "(11) 99999-9999",
+  },
+  {
+    name: "José da Silva",
+    cpf: "123.456.789-00",
+    birthDate: "01/01/2000",
+    phone: "(11) 99999-9999",
+  },
+  {
+    name: "João da Silva",
+    cpf: "123.456.789-00",
+    birthDate: "01/01/2000",
+    phone: "(11) 99999-9999",
+  },
+  {
+    name: "Maria da Silva",
+    cpf: "123.456.789-00",
+    birthDate: "01/01/2000",
+    phone: "(11) 99999-9999",
+  },
+  {
+    name: "José da Silva",
+    cpf: "123.456.789-00",
+    birthDate: "01/01/2000",
+    phone: "(11) 99999-9999",
+  },
+  {
+    name: "João da Silva",
+    cpf: "123.456.789-00",
+    birthDate: "01/01/2000",
+    phone: "(11) 99999-9999",
+  },
+  {
+    name: "Maria da Silva",
+    cpf: "123.456.789-00",
+    birthDate: "01/01/2000",
+    phone: "(11) 99999-9999",
+  },
+  {
+    name: "José da Silva",
+    cpf: "123.456.789-00",
+    birthDate: "01/01/2000",
+    phone: "(11) 99999-9999",
+  },
+  {
+    name: "João da Silva",
     cpf: "123.456.789-00",
     birthDate: "01/01/2000",
     phone: "(11) 99999-9999",
@@ -38,7 +107,7 @@ const clients = ref([
   </div>
   <VTable
     :data="clients"
-    class="w-full border-spacing-y-4 border-separate rounded-t mt-10 mb-10"
+    class="w-full border-spacing-y-4 border-separate rounded-t mt-10 mb-5"
   >
     <template #head>
       <tr class="uppercase">
@@ -77,4 +146,11 @@ const clients = ref([
       </tr>
     </template>
   </VTable>
+  <pagination
+    class="mt-5"
+    v-model="page"
+    :records="20"
+    :per-page="5"
+    :options="paginatorOptions"
+  />
 </template>
