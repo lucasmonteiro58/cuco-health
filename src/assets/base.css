@@ -61,6 +61,11 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  .VuePagination__count {
+    margin-top: 20px;
+    float: right;
+  }
+
   table {
     border: 0;
   }

@@ -2,18 +2,21 @@
 import { ref, reactive, onMounted } from "vue";
 import Pagination from "v-pagination-3";
 import Api from "@/services";
+import moment from "moment/min/moment-with-locales";
+import { verifyContainsNumbers, verifyIsCpf } from "@/utils";
 
 const page = ref(1);
 const totalRecords = ref(5);
 
 const paginatorOptions = {
   texts: {
-    count: "{from} - {to} de {count}|{count} registros| 1",
+    count: "{from} - {to} de {count}|{count} registros|  1 registro",
   },
 };
 
 const clients = ref([]);
 const loadingClients = ref(false);
+
 async function getClients() {
   mountForm();
   loadingClients.value = true;
@@ -27,8 +30,16 @@ async function getClients() {
     });
 }
 
+const search = ref("");
 const form = reactive({});
 function mountForm() {
+  form.cpf_like = "";
+  form.name_like = "";
+  if (verifyContainsNumbers(search.value) && verifyIsCpf(search.value)) {
+    form.cpf_like = search.value;
+  } else {
+    form.name_like = search.value;
+  }
   form._page = page.value;
   form._limit = 5;
 }
@@ -42,11 +53,12 @@ onMounted(() => {
   <div class="relative mt-1">
     <input
       type="text"
-      id="password"
+      v-model="search"
       class="input-primary"
       placeholder="Digite aqui o nome ou o CPF..."
     />
     <button
+      @click="getClients"
       class="block w-7 h-7 text-center text-xl leading-0 absolute top-4 right-2 text-gray-400 focus:outline-none hover:text-gray-900 transition-colors"
     >
       <i class="fa fa-search"></i>
@@ -55,7 +67,11 @@ onMounted(() => {
   <div class="flex justify-center" v-if="loadingClients">
     <i class="fas fa-spinner text-3xl mt-4 absolute animate-spin"></i>
   </div>
+  <div v-if="clients.length === 0" class="w-full text-center mt-5 text-lg">
+    Sem resultados
+  </div>
   <VTable
+    v-if="clients.length > 0"
     :data="clients"
     class="w-full border-spacing-y-4 border-separate rounded-t mt-10 mb-5"
   >
@@ -83,7 +99,7 @@ onMounted(() => {
           <div class="font-bold text-gray-600">{{ row.name }}</div>
           <div>{{ row.cpf }}</div>
         </td>
-        <td>{{ row.birthdate }}</td>
+        <td>{{ moment(row.birthdate).format("LL") }}</td>
         <td>{{ row.phone }}</td>
         <td class="pr-6">
           <div class="flex sm:justify-end">
@@ -96,7 +112,8 @@ onMounted(() => {
       </tr>
     </template>
   </VTable>
-  <pagination
+  <Pagination
+    v-if="clients.length > 0"
     v-model="page"
     :records="totalRecords"
     :per-page="5"
