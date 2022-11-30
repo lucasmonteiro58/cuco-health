@@ -1,94 +1,41 @@
 <script setup>
-import { ref } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import Pagination from "v-pagination-3";
+import Api from "@/services";
 
 const page = ref(1);
+const totalRecords = ref(5);
 
 const paginatorOptions = {
   texts: {
     count: "{from} - {to} de {count}|{count} registros| 1",
   },
 };
-const clients = ref([
-  {
-    name: "João da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-  {
-    name: "Maria da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-  {
-    name: "José da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-  {
-    name: "João da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-  {
-    name: "Maria da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-  {
-    name: "José da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-  {
-    name: "João da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-  {
-    name: "Maria da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-  {
-    name: "José da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-  {
-    name: "João da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-  {
-    name: "Maria da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-  {
-    name: "José da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-  {
-    name: "João da Silva",
-    cpf: "123.456.789-00",
-    birthDate: "01/01/2000",
-    phone: "(11) 99999-9999",
-  },
-]);
+
+const clients = ref([]);
+const loadingClients = ref(false);
+async function getClients() {
+  mountForm();
+  loadingClients.value = true;
+  await Api.getClients(form)
+    .then((response) => {
+      clients.value = response.data;
+      totalRecords.value = Number(response.headers["x-total-count"]);
+    })
+    .finally(() => {
+      loadingClients.value = false;
+    });
+}
+
+const form = reactive({});
+function mountForm() {
+  form._page = page.value;
+  form._limit = 5;
+}
+
+onMounted(() => {
+  getClients();
+});
 </script>
 
 <template>
@@ -104,6 +51,9 @@ const clients = ref([
     >
       <i class="fa fa-search"></i>
     </button>
+  </div>
+  <div class="flex justify-center" v-if="loadingClients">
+    <i class="fas fa-spinner text-3xl mt-4 absolute animate-spin"></i>
   </div>
   <VTable
     :data="clients"
@@ -133,7 +83,7 @@ const clients = ref([
           <div class="font-bold text-gray-600">{{ row.name }}</div>
           <div>{{ row.cpf }}</div>
         </td>
-        <td>{{ row.birthDate }}</td>
+        <td>{{ row.birthdate }}</td>
         <td>{{ row.phone }}</td>
         <td class="pr-6">
           <div class="flex sm:justify-end">
@@ -147,10 +97,10 @@ const clients = ref([
     </template>
   </VTable>
   <pagination
-    class="mt-5"
     v-model="page"
-    :records="20"
+    :records="totalRecords"
     :per-page="5"
     :options="paginatorOptions"
+    @paginate="getClients"
   />
 </template>

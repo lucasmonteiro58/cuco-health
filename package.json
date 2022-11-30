@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.2.1",
+    "axios": "^1.2.0",
     "pinia": "^2.0.26",
     "v-pagination-3": "^0.1.7",
     "vue": "^3.2.45",
+    "vue-axios": "^3.5.2",
     "vue-router": "^4.1.6",
     "vuejs-smart-table": "^1.0.0-beta.6"
   },
