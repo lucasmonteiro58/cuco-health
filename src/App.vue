@@ -36,7 +36,7 @@ function goToForm() {
     </h1>
   </header>
 
-  <main class="w-full flex items-center flex-col -mt-7">
+  <main class="w-full flex items-center flex-col -mt-8">
     <section class="w-full md:w-[700px] xl:w-[1120px] px-5 md:px-0">
       <RouterView />
     </section>

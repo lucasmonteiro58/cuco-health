@@ -21,6 +21,56 @@ body {
   }
 
   .input-primary {
-    @apply w-full pl-3 pr-10 py-3 shadow-sm rounded focus:outline-none;
+    @apply w-full pl-3 pr-10 py-4 shadow-sm rounded focus:outline-none;
+  }
+
+  .form-checkbox {
+    @apply w-5 h-5 text-cuco-pink border-gray-300 rounded focus:ring-cuco-pink checked:bg-cuco-pink checked:border-transparent;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    display: block;
+    margin-bottom: 0.625em;
+    padding: 1rem;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 0.8em;
+    text-align: left;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: right;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
   }
 }
