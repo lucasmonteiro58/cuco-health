@@ -4,6 +4,9 @@ import Pagination from "v-pagination-3";
 import Api from "@/services";
 import moment from "moment/min/moment-with-locales";
 import { verifyContainsNumbers, verifyIsCpf } from "@/utils";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const page = ref(1);
 const totalRecords = ref(5);
@@ -42,6 +45,10 @@ function mountForm() {
   }
   form._page = page.value;
   form._limit = 5;
+}
+
+function goToEdit(id) {
+  router.push({ name: "edit", params: { id } });
 }
 
 onMounted(() => {
@@ -103,7 +110,7 @@ onMounted(() => {
         <td>{{ row.phone }}</td>
         <td class="pr-6">
           <div class="flex sm:justify-end">
-            <button class="btn-secondary py-2 px-4">
+            <button class="btn-secondary py-2 px-4" @click="goToEdit(row.id)">
               <i class="fa fa-pencil mr-2"></i>
               Editar
             </button>

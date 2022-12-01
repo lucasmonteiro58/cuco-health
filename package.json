@@ -12,9 +12,11 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.2.1",
     "axios": "^1.2.0",
+    "maska": "^1.5.1",
     "moment": "^2.29.4",
     "pinia": "^2.0.26",
     "v-pagination-3": "^0.1.7",
+    "vee-validate": "^4.7.3",
     "vue": "^3.2.45",
     "vue-axios": "^3.5.2",
     "vue-router": "^4.1.6",
