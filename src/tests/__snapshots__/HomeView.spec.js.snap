@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`HomeView > renders properly 1`] = `
+"<div class=\\"relative mt-1\\"><input type=\\"text\\" class=\\"input-primary\\" placeholder=\\"Digite aqui o nome ou o CPF...\\"><button id=\\"btn-search\\" class=\\"block w-7 h-7 text-center text-xl leading-0 absolute top-4 right-2 text-gray-400 focus:outline-none hover:text-gray-900 transition-colors\\"><i class=\\"fa fa-search\\"></i></button></div>
+<!--v-if-->
+<div class=\\"w-full text-center mt-5 text-lg\\"> Sem resultados </div>
+<div class=\\"relative\\">
+  <!--v-if-->
+</div>
+<!--v-if-->
+<!--v-if-->
+<!--v-if-->"
+`;

@@ -117,6 +117,7 @@ onMounted(() => {
       placeholder="Digite aqui o nome ou o CPF..."
     />
     <button
+      id="btn-search"
       @click="getClients"
       class="block w-7 h-7 text-center text-xl leading-0 absolute top-4 right-2 text-gray-400 focus:outline-none hover:text-gray-900 transition-colors"
     >

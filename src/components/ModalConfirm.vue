@@ -29,8 +29,14 @@ function confirm() {
         Você tem certeza que quer excluir os cliente(s) selecionado(s)?
       </div>
       <div class="flex justify-between mt-7 gap-8">
-        <button class="btn-transparent py-2" @click="cancel">Cancelar</button>
-        <button class="btn-primary bg-cuco-red py-2" @click="confirm">
+        <button id="btn-cancel" class="btn-transparent py-2" @click="cancel">
+          Cancelar
+        </button>
+        <button
+          id="btn-confirm"
+          class="btn-primary bg-cuco-red py-2"
+          @click="confirm"
+        >
           Confirmar
         </button>
       </div>
