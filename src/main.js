@@ -9,6 +9,7 @@ import VueAxios from "vue-axios";
 import moment from "moment/min/moment-with-locales";
 import Maska from "maska";
 import Toast from "vue-toastification";
+import { MotionPlugin } from "@vueuse/motion";
 
 import "./assets/main.css";
 import "@fortawesome/fontawesome-free/css/all.css";
@@ -25,5 +26,6 @@ app.use(SmartTable);
 app.use(VueAxios, axios);
 app.use(Maska);
 app.use(Toast, options);
+app.use(MotionPlugin);
 
 app.mount("#app");

@@ -14,6 +14,7 @@ function confirm() {
     class="w-screen h-screen z-50 bg-[#00000050] fixed top-0 right-0 backdrop-blur flex items-center justify-center"
   >
     <div
+      v-motion-pop
       class="w-[90%] sm:w-[450px] min-h-[300px] bg-white rounded-md flex flex-col items-center justify-center px-4"
     >
       <div
