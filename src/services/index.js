@@ -30,12 +30,11 @@ const apiService = {
     const response = await api.put(`/clients/${id}`, formatedClient);
     return response;
   },
-  async deleteClient(id) {
-    const response = await api.delete(`/clients/${id}`);
-    return response;
-  },
-  async deleteClientsList(ids) {
-    const response = await api.delete(`/clients`, { ...ids });
+  async deleteClients(clients) {
+    const promises = clients.map((client) =>
+      api.delete(`/clients/${client.id}`)
+    );
+    const response = await Promise.allSettled(promises);
     return response;
   },
 };

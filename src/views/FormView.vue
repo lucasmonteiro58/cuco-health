@@ -1,14 +1,17 @@
 <script setup>
-import { reactive, computed, onMounted } from "vue";
+import { reactive, computed, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Field, Form, ErrorMessage } from "vee-validate";
 import { schema } from "@/utils/validations.js";
 import { convertDateToBR } from "@/utils";
+import { useToast } from "vue-toastification";
 import Api from "@/services";
 
 const router = useRouter();
+const toast = useToast();
 const isEdit = computed(() => router.currentRoute.value.name === "edit");
 const idClient = computed(() => router.currentRoute.value.params.id);
+const observer = ref(null);
 
 const client = reactive({
   name: "",
@@ -26,28 +29,24 @@ function submitForm(value) {
   else createClient(value);
 }
 
-function resetForm() {
-  client.name = "";
-  client.cpf = "";
-  client.birthdate = "";
-  client.phone = "";
-}
-
 async function createClient(value) {
   await Api.createClient(value)
     .then(() => {
-      resetForm();
+      toast.success("Cliente cadastrado com sucesso!");
+      observer.value.resetForm();
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
+      toast.error("Erro ao cadastrar cliente!");
     });
 }
 
 async function updateClient(value) {
   await Api.updateClient(idClient.value, value)
-    .then(() => {})
-    .catch((error) => {
-      console.log(error);
+    .then(() => {
+      toast.success("Cliente atualizado com sucesso!");
+    })
+    .catch(() => {
+      toast.error("Erro ao atualizar cliente!");
     });
 }
 
@@ -59,8 +58,8 @@ async function getClient() {
       client.birthdate = convertDateToBR(response.data.birthdate);
       client.phone = response.data.phone;
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
+      toast.error("Erro ao buscar cliente!");
     });
 }
 
@@ -70,7 +69,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Form @submit="submitForm" :validation-schema="schema">
+  <Form @submit="submitForm" :validation-schema="schema" ref="observer">
     <div class="grid gap-y-6 gap-x-5 md:grid-cols-2 grid-cols-1">
       <div>
         <Field

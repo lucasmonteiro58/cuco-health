@@ -9,6 +9,8 @@ module.exports = {
         "cuco-green": "#12a454",
         "cuco-pink": "#ee2279",
         "cuco-text": "#969cb2",
+        "cuco-red": "#e52e4d",
+        "cuco-text-strong": "#363f5f",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
