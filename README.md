@@ -1,51 +1,45 @@
-# cuco-health
+# cuco-health by Lucas Monteiro
 
-This template should help get you started developing with Vue 3 in Vite.
+## Acesso online
 
-## Recommended IDE Setup
+Site disponível em [cuco-health.netlify.app/](http://cuco-health.netlify.app/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+**_O servidor da API precisa está rodando localmente em localhost:3003_**
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Acesso offline
 
 ```sh
+
 npm install
+
 ```
 
-### Compile and Hot-Reload for Development
-
 ```sh
+
 npm run dev
+
 ```
 
-### Compile and Minify for Production
+### Rodar testes unitários
 
 ```sh
-npm run build
-```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
 npm run test:unit
+
 ```
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
+## Tecnologias Usadas
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
+O projeto foi desenvolvido com as features mais recentes do **Vue 3** e **Vite**. Utilizei a **Composition API** para construções dos componentes. Segue abaixo a lista de bibliotecas utilizadas.
 
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- **axios** - Comunicação com API
+- **fortawesome** - Para Icones
+- **maska** - Máscaras nos inputs de texto (CPF e telefone)
+- **moment** - Para trabalhar com a converssão de datas
+- **v-pagination-3** - Componente para paginação da tabela
+- **vee-validate** - Validação dos campos do form
+- **vue-toastification** - Componente de toast para notificação de usuário
+- **vuejs-smart-table** - Componente de tabela
+- **tailwindCSS** - Para estilização do site usando classes e sem usar CSS diretamente
+- **vitest** - Testes unitários
+- **eslint e prettier** - Para validação e formatação de código
