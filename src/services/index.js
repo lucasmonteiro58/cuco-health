@@ -2,7 +2,7 @@ import axios from "axios";
 import { convertDateToIso } from "@/utils";
 
 const api = axios.create({
-  baseURL: "http://localhost:3003/",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3003",
 });
 
 const apiService = {
