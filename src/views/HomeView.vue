@@ -103,6 +103,12 @@ function goToEdit(id) {
   router.push({ name: "edit", params: { id } });
 }
 
+function enterPress(event) {
+  if (event.key === "Enter") {
+    getClients();
+  }
+}
+
 onMounted(() => {
   getClients();
 });
@@ -114,6 +120,7 @@ onMounted(() => {
       type="text"
       v-model="search"
       class="input-primary"
+      @keypress="enterPress($event)"
       placeholder="Digite aqui o nome ou o CPF..."
     />
     <button
